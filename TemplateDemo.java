@@ -1,45 +1,37 @@
-package com.collection.alok;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class Stack<T extends Object>
-//class Stack<T,E>
+class Stack<T,E>
 {
-	T data1;
-	E data2;
-	
-	ArrayList<T> list=new  ArrayList<>();
-	//HashMap<T,E> map = new HashMap<>();
-	
-	/*void push(T data1,E data2){
-		this.data1=data1;
-		this.data2=data2;
-	map.put(data1, data2);*/
+	T data;
+	HashMap<T,E> map = new HashMap<>();
+	ArrayList<T> list = new ArrayList<>();
 	void push(T data){
-		this.data1=data;
-		list.add(data);
-		
+		this.data = data;
+		list.add(this.data);
 	}
 	void peep(){
-		for(int i=list.size()-1;i>=0;i--){
+		for(int i = list.size()-1; i>=0;i--){
 			System.out.println(list.get(i));
 		}
 	}
+	
 }
 public class TemplateDemo {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-  Stack<Object> myStack=new Stack<>();
-   /* myStack.push("Ram",1);
-    myStack.push("alok",2);*/
- /// myStack.push(data);
-  myStack.push("alok");
-  myStack.push(10000);
-   myStack.peep();
-   
-   //System.out.println(myStack);
+		Stack<String,Integer> myStack = new Stack<>();
+		myStack.push("ram");
+		myStack.push("shyam");
+		//myStack.push(1000);
+		myStack.peep();
+		Stack<Integer,Integer> myStack2 = new Stack<>();
+		Stack<Double,Float> myStack3 = new Stack<>();
+		Stack<Float,Long> myStack4 = new Stack<>();
 	}
 
 }
+
+
+

@@ -1,39 +1,39 @@
-package com.collection.alok;
-
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
-class sortById implements Comparator<Employee>
-
+class SortById implements Comparator<Employee>{
+	public int compare(Employee firstObject, Employee secondObject){
+		return ((Integer)firstObject.getId()).compareTo((Integer)secondObject.getId());
+	}
+}
+class SortByCity implements Comparator<Employee>
 {
-
-	@Override
-	public int compare(Employee obj1,Employee obj2) {
-		// TODO Auto-generated method stub
-		return ((Integer) obj1.getId()).compareTo((Integer)obj2.getId());
+	public int compare(Employee firstObject, Employee secondObject){
+		return firstObject.getCity().compareTo(secondObject.getCity());
 	}
-	}
-
+}
 class Employee implements Comparable<Employee>{
 	private int id;
 	private String name;
 	private String city;
-
+	@Override
+	public int compareTo(Employee object){
+		return this.name.compareTo(object.name);
+	}
 	@Override
 	public String toString(){
-		return "id "+ id +" name "+ name +" city "+ city +"\n";
+		return "Id "+id+" Name "+name+" City "+city+" \n";
 	}
-	
-	
-	Employee(int id,String name,String city)
-	{
-		this.id=id;
-		this.name=name;
-		this.city=city;
+	Employee(int id , String name, String city){
+		this.id = id;
+		this.name = name;
+		this.city = city;
 	}
 	public int getId() {
 		return id;
 	}
-	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -49,33 +49,37 @@ class Employee implements Comparable<Employee>{
 	public void setCity(String city) {
 		this.city = city;
 	}
-	@Override
-	public int compareTo(Employee obj) {
-		// TODO Auto-generated method stub
-		return this.name.compareTo(obj.name);
-	}
 	
 	
 }
-
-
 public class TreeSetDemo {
+	static void takeSet(Set set){
+		
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		List<Employee> empList = new ArrayList<>();
+		ArrayList<Employee> empList2 =new ArrayList<>();
+		//Set<Employee> employeeSet = new TreeSet<>(); // Upcasting
+		//TreeSet<Employee> employeeSet2 = new TreeSet<>(new SortById());
+		TreeSet<Employee> employeeSet2 =
+				new TreeSet<>((firstObject,secondObject)
+				->firstObject.getCity().
+				compareTo(secondObject.getCity()));
+		Employee emp = new Employee(1001,"Ram","Mumbai");
+		employeeSet2.add(emp);
+		Employee emp2 = new Employee(1001,"Ram","Mumbai");
+		employeeSet2.add(emp2);
+		Employee emp3 = new Employee(1002,"Anil","Delhi");
+		employeeSet2.add(emp3);
+		System.out.println(employeeSet2);
 		
-		//TreeSet<Employee> emp=new TreeSet<>(new sortById());
-		TreeSet<Employee> emp=new TreeSet<>((obj1,obj2)->((Integer)obj1.getId()).compareTo((Integer)obj2.getId()));
-		Employee emp3=new Employee(2, "alok", "lko");
-		emp.add(emp3);
-		Employee emp2=new Employee(1, "Ram", "Lmp");
-		emp.add(emp2);
-		//Employee emp3=new Employee(2, "alok", "lko");
-		Employee emp1=new Employee(1, "Ram", "Lmp");
-		emp.add(emp1);
-		System.out.println(emp);
 		
 
 	}
 
 }
+
+
+
